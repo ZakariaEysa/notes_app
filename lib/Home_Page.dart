@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/addNewNote.dart';
 import 'package:notes_app/notes_list.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -44,11 +43,11 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           String newNote = '';
 
-          Add_New_Note().CustombottomSheet(context, newNote);
+          Add_New_Note().CustombottomSheet(context, newNote, '');
           setState(() {
             Notes_List.List_of_Notes;
             const Notes_List();
-          }); 
+          });
 
           // return Container(
           //   child: Add_New_Note(),

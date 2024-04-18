@@ -4,9 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Custom_Note extends StatelessWidget {
   String note = '';
+  String title = '';
   Custom_Note({
     super.key,
     required this.note,
+    required this.title,
   });
 
   @override
@@ -29,8 +31,8 @@ class Custom_Note extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
-            title: const Text(
-              "Flutter tips ",
+            title: Text(
+              title,
               style: TextStyle(color: Colors.black, fontSize: 25),
             ),
             trailing: IconButton(
