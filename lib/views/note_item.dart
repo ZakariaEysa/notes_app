@@ -35,11 +35,18 @@ class NoteItem extends StatelessWidget {
 
 
               title: const Text("title",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
-              subtitle: Text("Build your career with ziko",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
+
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text("Build your career with ziko",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
+              ),
               trailing: const IconButton(icon: Icon(Icons.delete,size: 20,color: Colors.black), onPressed: null),
 
             ),
-            Text("may 12 /3/2003  ",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12,right: 16),
+              child: Text("may 12 /3/2003",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),),
+            )
           ],
         ),
 
