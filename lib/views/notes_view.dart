@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_note_content.dart';
+import 'custom_add_note.dart';
 import 'notes_view_body.dart';
 
 class NotesView extends StatelessWidget {
@@ -16,7 +16,7 @@ class NotesView extends StatelessWidget {
 
 
         onPressed: (){
-          showModalBottomSheet(context: context, builder: (context) => const CustomNoteContent(),);
+          showModalBottomSheet(context: context, builder: (context) => const CustomAddNote(),);
 
         },child: const Icon(Icons.add,color: Colors.black,),),
      body: const NotesViewBody(),

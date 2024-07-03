@@ -16,7 +16,7 @@ class  NotesViewBody extends StatelessWidget {
 
         children: [
           const SizedBox(height: 50,),
-          const CustomAppBar(),
+           const CustomAppBar(title: "Notes",),
          Expanded(
 
            child: ListView.builder(itemCount:15,itemBuilder: (context, index) {
