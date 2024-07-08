@@ -1,23 +1,22 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:notes_app/models/note_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_app/simple_bloc_observer.dart';
 import 'package:notes_app/views/notes_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Add this import
 
 import 'constants.dart';
+import 'models/note_model.dart';
 
-void main()  async{
-
+void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kNotesBox);
+
+  Bloc.observer=SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
 
+  await Hive.openBox<NoteModel>(kNotesBox);
+
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MyApp(), // Wrap your app
-    ),
+    const MyApp(), // Wrap your app
   );
 }
 
@@ -27,9 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       theme: ThemeData(brightness: Brightness.dark, fontFamily: "Poppins"),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
