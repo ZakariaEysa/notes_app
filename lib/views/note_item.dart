@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.title, required this.subtitle, required this.date});
+  final String title;
+  final String subtitle;
+  final String date;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +39,18 @@ class NoteItem extends StatelessWidget {
             ListTile(
 
 
-              title: const Text("title",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
+              title:  Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
 
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Text("Build your career with ziko",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
+                child: Text(subtitle,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
               ),
               trailing: const IconButton(icon: Icon(Icons.delete,size: 20,color: Colors.black), onPressed: null),
 
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 12,right: 16),
-              child: Text("may 12 /3/2003",style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),),
+              child: Text(date,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),),
             )
           ],
         ),
