@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/notes_list_cubit/notes_list_cubit.dart';
 
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.title, required this.subtitle, required this.date});
-  final String title;
-  final String subtitle;
-  final String date;
 
+  final NoteModel note;
+
+  const NoteItem({super.key, required this.note});
 
 
   @override
@@ -29,7 +31,7 @@ class NoteItem extends StatelessWidget {
 
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-          color: const Color(0xffFFCD79)
+          color:  Color(note.color)
         ),
 
 
@@ -39,18 +41,25 @@ class NoteItem extends StatelessWidget {
             ListTile(
 
 
-              title:  Text(title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
+
+              title:  Text(note.title,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xffFFCD79) ),),
 
               subtitle: Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Text(subtitle,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
+                padding:  const EdgeInsets.only(top: 16),
+                child: Text(note.subTitle,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 20),),
               ),
-              trailing: const IconButton(icon: Icon(Icons.delete,size: 20,color: Colors.black), onPressed: null),
+              trailing:  IconButton(onPressed: ()  {
+
+                note.delete();
+                BlocProvider.of<NotesListCubit>(context).fetchAllNotes();
+
+
+              },icon: const Icon(Icons.delete,size: 20,color: Colors.black), ),
 
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 12,right: 16),
-              child: Text(date,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),),
+              child: Text(note.date,style: TextStyle(color: Colors.black.withOpacity(.2),fontSize: 18),),
             )
           ],
         ),

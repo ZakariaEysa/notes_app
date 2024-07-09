@@ -5,7 +5,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/models/note_model.dart';
 
-import '../notes_list_cubit/notes_list_cubit.dart';
 
 part 'add_note_state.dart';
 
