@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 
-import 'custom_add_buttom.dart';
+import 'custom_add_bottom.dart';
 import 'custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -20,61 +20,66 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Form(
-        key: formKey,
-        autovalidateMode: autoValidateMode,
+    return Form(
+      key: formKey,
+      autovalidateMode: autoValidateMode,
 
-        child: Column(
-          children: [
-            const SizedBox(height: 25,),
-            CustomTextField(
-              onSaved: (value) {
-                title = value;
-              },
+      child: Column(
+        children: [
+          const SizedBox(height: 25,),
+          CustomTextField(
+            onSaved: (value) {
+              title = value;
+            },
 
-              hintText: "Title", width: 1,),
-            const SizedBox(height: 15,),
+            hintText: "Title", width: 1,),
+          const SizedBox(height: 15,),
 
 
-            CustomTextField(hintText: "Content", width: 5,
+          CustomTextField(hintText: "Content", width: 5,
 
 
-              onSaved: (value) {
-                subTitle = value;
-              },
-            ),
-            const SizedBox(height: 80,),
+            onSaved: (value) {
+              subTitle = value;
+            },
+          ),
+          const SizedBox(height: 60,),
 
 
-            CustomAddButtom(
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomAddBottom(
 
-              onTab: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  NoteModel note = NoteModel(date: DateTime.now().toString(),
-                      color: Colors.blue.value,
-                      title: title!,
-                      subTitle: subTitle!);
-                  BlocProvider.of<AddNoteCubit>(context).addNote(note);
-
-                  // Navigator.pop(context, [title, subTitle]);
-                } else {
-                  setState(() {
-                    autoValidateMode = AutovalidateMode.always;
-                  });
-                }
-              },
+                isLoading: state is AddNoteLoading?true:false,
 
 
-            ),
+                onTab: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    NoteModel note = NoteModel(date: DateTime.now()
+                        .toString(),
+                        color: Colors.blue.value,
+                        title: title!,
+                        subTitle: subTitle!);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => CustomNoteContent(),));
+                    // Navigator.pop(context, [title, subTitle]);
+                  } else {
+                    setState(() {
+                      autoValidateMode = AutovalidateMode.always;
+                    });
+                  }
+                },
 
 
-          ],
+              );
+            },
+          ),
 
 
-        ),
+        ],
+
+
       ),
     );
   }

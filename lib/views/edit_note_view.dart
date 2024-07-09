@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_app_bar.dart';
-import 'custom_note_content.dart';
+import 'add_note_bottom_sheet.dart';
 class EditNoteView extends StatelessWidget {
   const EditNoteView({super.key});
 
@@ -15,7 +15,7 @@ class EditNoteView extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: CustomAppBar(title:"Edit Note",icon: Icons.check,),
           ),
-           CustomNoteContent()
+          AddNoteBottomSheet()
 
 
 

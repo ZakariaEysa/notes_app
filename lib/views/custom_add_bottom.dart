@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class CustomAddButtom extends StatelessWidget {
-  const CustomAddButtom({super.key, this.onTab});
+class CustomAddBottom extends StatelessWidget {
+  const CustomAddBottom({super.key, this.onTab, this.isLoading = false});
+
+  final bool isLoading;
   final Function()? onTab;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,15 @@ class CustomAddButtom extends StatelessWidget {
           color:  kPrimaryColor,
           borderRadius: BorderRadius.circular(16)
         ),
-        child: const Center(
+        child: isLoading?const SizedBox(
+          width: 24,
+          height: 24,
+          child: Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ),
+        ): const Center(
           child: Text("Add",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
         ),
 
