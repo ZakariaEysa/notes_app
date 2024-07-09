@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
 
-   const CustomTextField({required this.hintText, super.key, required this.width, this.onSaved});
+   const CustomTextField({required this.hintText, super.key, required this.width, this.onSaved, this.onChanged});
 
   final String hintText;
   final int width;
 
  final  void Function(String?)? onSaved;
+   final  void Function(String?)? onChanged;
+
 
 
    @override
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
 
       onSaved: onSaved,
+        onChanged: onChanged,
         validator: (value) {
           if(value?.isEmpty ?? true){
 
