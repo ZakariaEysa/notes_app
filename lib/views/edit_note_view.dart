@@ -5,6 +5,7 @@ import 'package:notes_app/notes_list_cubit/notes_list_cubit.dart';
 
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
+import 'edit_note_list_view.dart';
 class EditNoteView extends StatefulWidget {
   const EditNoteView({super.key, required this.note});
 final NoteModel note;
@@ -61,6 +62,13 @@ class _EditNoteViewState extends State<EditNoteView> {
 
             ),
           ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: EditNoteListView(note: widget.note,),
+          )
 
 
 

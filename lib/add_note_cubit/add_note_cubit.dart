@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +12,10 @@ part 'add_note_state.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
-
+ Color? color;
   addNote(NoteModel note) async {
+
+    note.color=color!.value;
     emit(AddNoteLoading());
 
     try {
